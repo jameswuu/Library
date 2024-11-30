@@ -8,6 +8,62 @@
     <script src="myscript.js"></script>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="heading">
+
+            <div class="title">
+                <h1>My Book list</h1>
+                Feel free to add your book to the form
+            </div>
+
+            <div class="add-books">
+                <form action="">
+                    <div class="form-row">
+                        <label for="title">Title</label>
+                        <input id="title" type="text" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="author">Author</label>
+                        <input id="author" type="text" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="pages">Pages</label>
+                        <input id="pages" type="number" min="1" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="status">Status</label> 
+                        <select id="status" required>
+                            <option value="" disabled selected>Select status</option> <!-- Placeholder option -->
+                            <option value="True">Read</option> 
+                            <option value="False">Not Read</option> 
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit">Add Book</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Book</th>
+                        <th>Author</th>
+                        <th>Pages</th>
+                        <th>Read</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <tr>
+                        <td>Row 1, Cell 1</td>
+                        <td>Row 1, Cell 2</td>
+                        <td>Row 1, Cell 3</td>
+                        <td>Row 1, Cell 4</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>
