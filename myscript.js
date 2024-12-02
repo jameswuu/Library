@@ -5,6 +5,7 @@ const myLibrary = [
     { title: "1984", author: "George Orwell", pages: 328, read: "Not Read" },
 ];
 
+
 // Book Constructor
 function Book(title, author, pages, read) {
     this.title = title;
@@ -13,16 +14,30 @@ function Book(title, author, pages, read) {
     this.read = read; //True or False 
 }
 
+
 // Add book to the list
 function addBookToLibrary(title, author, pages, read) {
-    const newBook = Book(title, author, pages, read);
+    console.log(`Title is ${title}
+        Author is ${author}
+        Pages is ${pages}
+        Status is ${read}`)    
+
+    // Create a new instance 
+    const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
+    BookDisplay();
+    console.log(`Add book function ran`)    
+
 } 
+
 
 // Display book
 function BookDisplay(){
     // Initailize the existing table
     const table = document.getElementById('table-body');
+    
+    // Clear the existing content of the table body
+    table.innerHTML = ''; // This effectively removes all current rows
 
     // Loop through each book in the array
     for(book of myLibrary) {
@@ -47,7 +62,7 @@ const dialog = document.querySelector("dialog");
 const showButton = document.querySelector("dialog + button");
 const closeButton = document.querySelector("dialog button");
 
-// "Show the dialog" button opens the dialog modally
+// "Add books" button opens the dialog modally
 showButton.addEventListener("click", () => {
   dialog.showModal();
 });
@@ -58,4 +73,21 @@ closeButton.addEventListener("click", () => {
 });
 
 
-BookDisplay()
+// Add book to the array
+document.querySelector("#book-form").addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the data from the form
+    const title = document.getElementById('title').value;
+    const author = document.getElementById("author").value;
+    const pages = document.getElementById("pages").value;
+    const read = document.getElementById("status").value;
+
+    // Add Book to the array
+    addBookToLibrary(title, author, pages, read);
+
+    console.log(`Form Ran`)    
+})
+
+
+BookDisplay();
