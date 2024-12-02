@@ -1,5 +1,5 @@
 // Array to store books
-const myLibrary = [
+let myLibrary = [
     // Testing for displaying the books
     { title: "The Great Gatsby", author: "F. Scott Fitzgerald", pages: 218, read: "Read" },
     { title: "1984", author: "George Orwell", pages: 328, read: "Not Read" },
@@ -17,17 +17,11 @@ function Book(title, author, pages, read) {
 
 // Add book to the list
 function addBookToLibrary(title, author, pages, read) {
-    console.log(`Title is ${title}
-        Author is ${author}
-        Pages is ${pages}
-        Status is ${read}`)    
-
     // Create a new instance 
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     BookDisplay();
     console.log(`Add book function ran`)    
-
 } 
 
 
@@ -50,6 +44,22 @@ function BookDisplay(){
             cell.textContent = book[item]; // Set the cell's text to the book's property value
             row.appendChild(cell); // Append the cell to the row
         }
+
+        // Create a cell for each button
+        const cell = document.createElement('td');
+
+        // Create a button element for removing the book
+        const button = document.createElement("button");
+        button.id = book.title;
+        button.innerText = "Remove this book"
+
+        console.log(`The id of the current button is ${button.id}`)
+
+        // Append the button to the cell
+        cell.appendChild(button); 
+
+        // Append the cell to the row
+        row.appendChild(cell);
 
         // Assign the new row to the table
         table.appendChild(row);
@@ -87,6 +97,22 @@ document.querySelector("#book-form").addEventListener("submit", (event) => {
     addBookToLibrary(title, author, pages, read);
 
     console.log(`Form Ran`)    
+})
+
+
+// Remove book from array
+document.querySelector("#table-body").addEventListener("click", (event) => {
+    if(event.target.tagName === 'BUTTON') {
+        // Debugging Line
+        console.log(event.target.id);
+
+        // Remove the book from the array
+        const titleToRemove = event.target.id;
+        myLibrary = myLibrary.filter(book => book.title !== titleToRemove);
+        
+        // Update the display after removing the book
+        BookDisplay();
+    }
 })
 
 
