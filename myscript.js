@@ -48,6 +48,11 @@ function BookDisplay(){
         // Create a cell for each button
         const cell = document.createElement('td');
 
+        // Create a button element for changing the read status
+        const readingButton = document.createElement("button");
+        readingButton.id = book.title;
+        readingButton.innerText = "Read Already!?"
+
         // Create a button element for removing the book
         const button = document.createElement("button");
         button.id = book.title;
@@ -56,6 +61,7 @@ function BookDisplay(){
         console.log(`The id of the current button is ${button.id}`)
 
         // Append the button to the cell
+        cell.appendChild(readingButton);
         cell.appendChild(button); 
 
         // Append the cell to the row
@@ -105,11 +111,24 @@ document.querySelector("#table-body").addEventListener("click", (event) => {
     if(event.target.tagName === 'BUTTON') {
         // Debugging Line
         console.log(event.target.id);
+        const title = event.target.id;
 
-        // Remove the book from the array
-        const titleToRemove = event.target.id;
-        myLibrary = myLibrary.filter(book => book.title !== titleToRemove);
-        
+        // Check which button is clicked
+        if (event.target.innerHTML === "Remove this book") {
+            // Remove the book from the array
+            myLibrary = myLibrary.filter(book => book.title !== title);
+        } else {
+            // Change the Status of the book
+            console.log(`Status function ran`);
+
+            myLibrary = myLibrary.map(book => {
+                if (book.title === title) {
+                    book.read = book.read === "Read" ? "Not Read" : "Read";
+                }
+                return book;
+            })
+        }    
+
         // Update the display after removing the book
         BookDisplay();
     }

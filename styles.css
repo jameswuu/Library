@@ -76,6 +76,10 @@ table {
     text-align: center;
 }
 
+table button {
+    margin: 0 3px;
+}
+
 .size-1 {
     width: 500px
 }
