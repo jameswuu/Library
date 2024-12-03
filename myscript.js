@@ -120,7 +120,6 @@ document.querySelector("#table-body").addEventListener("click", (event) => {
         } else {
             // Change the Status of the book
             console.log(`Status function ran`);
-
             myLibrary = myLibrary.map(book => {
                 if (book.title === title) {
                     book.read = book.read === "Read" ? "Not Read" : "Read";
@@ -128,7 +127,6 @@ document.querySelector("#table-body").addEventListener("click", (event) => {
                 return book;
             })
         }    
-
         // Update the display after removing the book
         BookDisplay();
     }
