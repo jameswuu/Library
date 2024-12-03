@@ -76,6 +76,14 @@ table {
     text-align: center;
 }
 
+.size-1 {
+    width: 500px
+}
+
+.size-2 {
+    width: 300px;
+}
+
 th, td {
     border: 1px solid black;
     padding: 8px;
